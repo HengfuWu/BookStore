@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>CreateError</title>
+    <style>
+        li {
+            font-size: 20px;
+            font-family: "Times New Roman";
+            font-style: normal;
+        }
+
+        h1 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+
+        #buy {
+            height: 35px;
+            width: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" style="position:relative; text-align:center; padding:30px">
+        <div class="col-sm-12 form-inline">
+            <h1 style="color:red"> Search condition hasn't been set up correctly.</h1>
+            <h3 style="position:absolute; left:310px">@Html.ActionLink("Go back", "Show", new { pageNumber = 1 })</h3>
+        </div>
+    </div>
+</body>
+</html>

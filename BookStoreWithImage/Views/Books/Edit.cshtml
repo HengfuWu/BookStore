@@ -1,0 +1,73 @@
+﻿@model BookStoreWithImage.Models.Books
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Edit</title>
+    <style>
+        li {
+            font-size: 20px;
+            font-family: "Times New Roman";
+            font-style: normal;
+        }
+
+        h1 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+        #create 
+        {
+            height:35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="position:relative; text-align:center">
+        <div class="col-sm-12 form-inline">
+            <h1 class="jumbotron">Edit @Model.Name</h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li role="presentation">@Html.ActionLink("Create New Book", "Create", "Books")</li>
+                <li role="presentation">@Html.ActionLink("Show All Books", "Show", "Books", new { pageNumber = 1 }, null)</li>
+                <li role="presentation" class="active">@Html.ActionLink("Edit books", "Edit","Books", new { id= Model.Id })</li>
+                <li role="presentation">@Html.ActionLink("Buy Book", "Buy", "Trade")</li>
+            </ul>
+            <div style="padding:50px">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.HiddenFor(m => m.Id)
+
+                    <div class="input-group" style="position: absolute; left: 250px; padding:30px;">
+                        <span class="input-group-addon col-lg-12">Name:</span>@Html.TextBoxFor(m => m.Name) <br />
+                        <div class="input-group" style="position: absolute; left: 0px; padding:30px; ">
+                            <input id="create" type="submit" value="Update " />
+                        </div>
+                    </div>
+
+                    <div class="input-group" style="position: absolute; left: 550px; padding:30px">
+                        <span class="input-group-addon col-lg-12" id="basic-addon1">Price:</span>@Html.TextBoxFor(m => m.Price) <br />
+                        <div class="input-group" style="position: absolute; left: 0px; padding:30px">
+                            <button type="button" class="btn" aria-label="Left Align">@Html.ActionLink("Cancel", "Show", new { pageNumber=1})</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+﻿@model List<BookStoreWithImage.Models.Books>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show</title>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        li {
+            font-size: 20px;
+            font-family: "Times New Roman";
+            font-style: normal;
+        }
+
+        h1 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+
+        ul.a {
+            list-style-type: circle;
+            color: dodgerblue;
+        }
+
+        th, td {
+            text-align: center;
+            height: 50px;
+            font-family: "Times New Roman";
+            font-size: medium;
+        }
+        #search 
+        {
+            position:relative;
+            right:1.2%;
+            width:30%;
+            height:40px;
+            font-size:20px;
+            font-weight:200;
+            font-family:"Times New Roman";
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="position:relative; text-align:center">
+        <div class="col-sm-12 form-inline">
+            <h1 class="jumbotron">All Books List</h1>
+
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li role="presentation">@Html.ActionLink("Create New Book", "Create", "Books")</li>
+                <li role="presentation" class="active">@Html.ActionLink("Show All Books", "Show", "Books", new { pageNumber = 1 }, null)</li>
+                <li role="presentation">@Html.ActionLink("Buy Book", "Buy", "Trade")</li>
+            </ul>
+
+            <div style="position:relative; left:0%; padding:30px">
+                <div class="panel panel-default">
+                    <button id="search" type="button" class="btn btn-default navbar-right" aria-label="Left Align"> @Html.ActionLink("Search books", "SearchBook") </button>
+                    <div class="panel-heading, well">
+
+                    </div>
+                    <table class="table" style="position:center;width:1000px">
+                        <tr>
+                            <th>Book ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+
+                        @foreach (var book in this.Model)
+                        {
+                            <tr>
+                                <td>@book.Id</td>
+                                <td>@book.Name</td>
+                                <td>@book.Price</td>
+                                <td>@Html.ActionLink("Edit", "Edit", new { id = book.Id })</td>
+                                <td>@Html.ActionLink("Delete", "Delete", new { id = book.Id })</td>
+
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <nav>
+                <ul class="pagination">
+
+                    @for (int i = 1; i <= ViewBag.MaxPageNumber; i++)
+                    {
+                        <li>@Html.ActionLink("Page " + i.ToString() + " ", "Show", new { pageNumber = i })  </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div style="position:relative;bottom:12%; left:10%" class="panel-body">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿@model List<BookStoreWithImage.Models.GetBooksOfPage_Result>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show</title>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        li {
+            font-size: 20px;
+            font-family: "Times New Roman";
+            font-style: normal;
+        }
+
+        h1 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+
+        ul.a {
+            list-style-type: circle;
+            color: dodgerblue;
+        }
+
+        th, td {
+            text-align: center;
+            height: 50px;
+            font-family: "Times New Roman";
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="position:relative; text-align:center">
+        <div class="col-sm-12 form-inline">
+            <h1 class="jumbotron">All Books List</h1>
+
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li role="presentation" class="active">@Html.ActionLink("Show All Books", "Show", "Book", new { pageNumber = 1 }, null)</li>
+                <li role="presentation">@Html.ActionLink("Create New Book", "Create", "Book")</li>
+            </ul>
+            <div style="position:relative; left:0%; padding:30px">
+                <div class="panel panel-default">
+                    <div class="panel-heading, well"> <b>All available books</b></div>
+                    <table class="table" style="position:center;width:1000px">
+                        <tr>
+                            <th>Book ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Cover</th>
+                            <th>Edit</th>
+                            @*<th>Delete</th>*@
+                        </tr>
+
+                        @foreach (var book in this.Model)
+                        {
+                            <tr>
+                                <td>@book.Id</td>
+                                <td>@book.Name</td>
+                                <td>$@book.Price</td>
+                                <td><img src="@Url.Content(book.CoverImagePath)" alt="@book.Name" width="300" height="200" /></td>
+                                <td>@Html.ActionLink("edit", "Edit", new { id = book.Id })</td>
+                                @*<td>@Html.ActionLink("delete", "Delete", new { id = book.Id })</td>*@
+
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <nav>
+                <ul class="pagination">
+
+                    @for (int i = 1; i <= ViewBag.MaxPageNumber; i++)
+                    {
+                        <li>@Html.ActionLink("Page " + i.ToString() + " ", "Show", new { pageNumber = i })  </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div style="position:relative;bottom:12%; left:10%" class="panel-body">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿@model BookStoreWithImage.Models.BuyViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Buy</title>
+    <style>
+        li {
+            font-size: 20px;
+            font-family: "Times New Roman";
+            font-style: normal;
+        }
+
+        h1 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+
+        #buy {
+            height: 35px;
+            width: 60px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" style="position:relative; text-align:center">
+        <div class="col-sm-12 form-inline">
+            <h1 class="jumbotron">Buy Book</h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li role="presentation">@Html.ActionLink("Create New Book", "Create", "Books")</li>
+                <li role="presentation">@Html.ActionLink("Show All Books", "Show", "Books", new { pageNumber = 1 }, null)</li>
+                <li role="presentation" class="active">@Html.ActionLink("Buy Book", "Buy", "Trade")</li>
+            </ul>
+
+            @{
+                List<SelectListItem> userList = new List<SelectListItem>();
+                foreach (var user in BookStoreWithImage.Models.UserProvider.Instance.AllUser)
+                {
+                    SelectListItem item = new SelectListItem() { Text = user.Name, Value = user.Id.ToString() };
+                    userList.Add(item);
+                }
+
+                List<SelectListItem> bookList = new List<SelectListItem>();
+                foreach (var book in BookStoreWithImage.Models.BookProviders.Instance.AllBooks)
+                {
+                    SelectListItem item = new SelectListItem() { Text = book.Name, Value = book.Id.ToString() };
+                    bookList.Add(item);
+                }
+            }
+
+            @using (Html.BeginForm("Buy", "Trade"))
+            {
+                @Html.HiddenFor(m => m.Limit)
+
+                <div class="input-group" style="position: absolute; left: 100px; padding:30px">
+                    <span class="input-group-addon col-lg-12" id="basic-addon1">User Id:@Html.DropDownListFor(m => m.UserId, userList)</span> <br />
+                    <div class="input-group" style="position: absolute; left: 50px; padding:30px; ">
+                        <input id="buy" type="submit" value="Buy" />
+                    </div>
+                </div>
+
+                <div class="input-group" style="position: absolute; left: 400px; padding:30px">
+                    <span class="input-group-addon col-lg-12" id="basic-addon1">Book Id:@Html.DropDownListFor(m => m.BookId, bookList)</span> <br />
+                    <div class="input-group" style="position: absolute; left: 50px; padding:30px">
+                        <button type="button" class="btn" aria-label="Left Align">@Html.ActionLink("Cancel", "Index", "Home")</button>
+                    </div>
+                </div>
+
+                <div class="input-group" style="position: absolute; left: 700px; padding:30px">
+                    <span class="input-group-addon " id="basic-addon1">Amount:@Html.TextBoxFor(m => m.Amount)</span>
+                </div>
+            }
+            
+        </div>
+    </div>
+</body>
+</html>

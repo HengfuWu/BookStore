@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BookStoreWithImage.Models.Books>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>BookList</title>
+    <style>
+        th, td {
+            text-align: center;
+            height: 50px;
+            font-family: "Times New Roman";
+            font-size: medium;
+        }
+
+        
+        h1 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="position:relative; text-align:center">
+        <div class="col-sm-12 form-inline">
+            <h1 class="jumbotron">Searched Result:</h1>
+            <table class="table" style="position:center;width:1000px">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                @foreach (var book in this.Model)
+            {
+                    <tr>
+                        <td>@book.Id</td>
+                        <td>@book.Name</td>
+                        <td>@book.Price</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

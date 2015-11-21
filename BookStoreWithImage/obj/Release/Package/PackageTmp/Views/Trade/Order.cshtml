@@ -1,0 +1,77 @@
+﻿@model BookStoreWithImage.Models.OrderViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Order Details</title>
+    <style>
+        li {
+            font-size: 20px;
+            font-family: "Times New Roman";
+            font-style: normal;
+        }
+
+        th {
+            text-align: center;
+        }
+
+
+        h1, h2 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container" style="position:relative; text-align:center">
+        <h1 class="jumbotron">Shopping Cart</h1><br />
+
+        <div class="col-sm-12 form-inline">
+
+
+            <h2 style="position:absolute;left:0px">Thanks for your purchase.   Order #@Model.Order.ID details: </h2> <br /><br /><br />
+
+            <table class="table" style="position:center;width:1000px; padding:30px">
+                <tr>
+                    <th>Book ID</th>
+                    <th>Book Name</th>
+                    <th>Total Pay</th>
+                    <th>User Id</th>
+                    <th>User Name</th>
+                </tr>
+
+                <tr>
+                    <td>@Model.Book.Id</td>
+                    <td>@Model.Book.Name</td>
+                    <td>$@Model.Order.Total</td>
+                    <td>@Model.Order.UserId</td>
+                    <td>@Model.User.Name</td>
+                </tr>
+
+            </table>
+            <br />
+            <br />
+            <h4 style="position:absolute;left:0px" class="col-sm-6  col-sm-offset-6">@Html.ActionLink("Continue to purchase?", "buy", "Trade")</h4>
+
+            <h4 style="position:absolute;left:0px" class="">@Html.ActionLink("Go Home", "Index", "Home")</h4> <br /><br />
+
+        </div>
+    </div>
+</body>
+</html>

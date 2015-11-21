@@ -1,0 +1,69 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>hengfubookstore</title>
+    <style>
+        li {
+            font-size: 20px;
+            font-family: "Times New Roman";
+            font-style: normal;
+        }
+
+        h1 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+
+        ul.a {
+            list-style-type: circle;
+            color: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="position:relative; text-align:center">
+        <div class="col-sm-12 form-inline">
+
+            <div class="jumbotron"><h1>Welcome to Wu's bookstore</h1></div>
+
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li role="presentation">@Html.ActionLink("Create New Book", "Create", "Books")</li>
+                <li role="presentation">@Html.ActionLink("Show All Books", "Show", "Books", new { pageNumber = 1 }, null)</li>
+                <li role="presentation">@Html.ActionLink("Buy Book", "Buy", "Trade")</li>
+            </ul>
+
+            <div>
+                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRCdWwJ3J6jcYRTcwnWzkBzuSJZxyMn1x50d0DM5mC3khtLGZKSkA" style="height:350px; width:400px" />
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div style="position:relative;bottom:12%; left:10%" class="panel-body">
+            <ul class="a">
+                <li>Book store management system.</li>
+                <li>Upload and display image for books.</li>
+                <li>Pagination is implemented.</li>
+                <li>Stored Procedure is created for application to access the database.</li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>SearchBook</title>
+    <style>
+        li {
+            font-size: 20px;
+            font-family: "Times New Roman";
+            font-style: normal;
+        }
+
+        h1 {
+            font-family: "Times New Roman";
+            font-style: oblique;
+            color: dodgerblue;
+        }
+
+        .jumbotron {
+            background-color: azure;
+            padding: 30px;
+        }
+
+        body {
+            background-color: transparent;
+        }
+
+        #button {
+            height: 30px;
+        }
+
+        #search {
+            height: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="position:relative; text-align:center">
+
+        <div class="col-sm-12 form-inline">
+            <h1 class="jumbotron">Search Books</h1>
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li role="presentation">@Html.ActionLink("Create New Book", "Create", "Books")</li>
+                <li role="presentation">@Html.ActionLink("Show All Books", "Show", "Books", new { pageNumber = 1 }, null)</li>
+                <li role="presentation" class="active">@Html.ActionLink("Seach Books", "SearchBook", "Books")</li>
+                <li role="presentation">@Html.ActionLink("Buy Book", "Buy", "Trade")</li>
+            </ul>
+            <div style="padding:50px">
+                @using (Html.BeginForm("Query", "Books", FormMethod.Post))
+            {
+
+                    <div class="input-group" style="position: absolute; left: 200px; padding:30px;">
+                        <span class="input-group-addon col-lg-12">min price:</span>@Html.TextBox("minPrice") <br />
+                        <div class="input-group" style="position: absolute; left: 0px; padding:30px; ">
+                            <input id="search" type="submit" value="Search " />
+                        </div>
+                    </div>
+
+                    <div class="input-group" style="position: absolute; left: 500px; padding:30px">
+                        <span class="input-group-addon col-lg-12" id="basic-addon1">max price:</span>@Html.TextBox("maxPrice") <br />
+                        <div class="input-group" style="position: absolute; left: 0px; padding:30px">
+                            <button type="button" class="btn" aria-label="Left Align">@Html.ActionLink("Cancel", "Show", new { pageNumber = 1 })</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group" style="position: absolute; left: 800px; padding:30px">
+                        <span class="input-group-addon col-lg-12" id="basic-addon1">Max Shown Result:</span>
+
+                        <button id="button" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Html.DropDownList("maxResult", new List<SelectListItem>()
+                        {
+                            new SelectListItem() { Text = "10 books", Value = "10" },
+                            new SelectListItem() { Text = "20 books", Value = "20" },
+                            new SelectListItem() { Text = "30 books", Value = "30" },
+                            new SelectListItem() { Text="All books", Value = "100"}
+                        })
+                        </button>
+                    </div>
+                }
+
+                @*<nav>
+                        <ul class="pagination">
+
+                            @for (int i = 1; i <= ViewBag.MaxPageNumber; i++)
+                            {
+                                <li>@Html.ActionLink("Page " + i.ToString() + " ", "Show", new { pageNumber = i })  </li>
+                            }
+                        </ul>
+                    </nav>*@
+            </div>
+        </div>
+    </div>
+</body>
+</html>

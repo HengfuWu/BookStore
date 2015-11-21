@@ -1,0 +1,20 @@
+﻿@model BookStoreWithImage.Models.Book
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div> 
+        <h2> Create a new book</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.LabelFor(m => m.Name)@Html.TextBoxFor(m => m.Name) <br />
+            @Html.LabelFor(m => m.Price)@Html.TextBoxFor(m => m.Price) <br />
+            <input type="submit" name="name" value="Create" />
+        }
+    </div>
+</body>
+</html>
